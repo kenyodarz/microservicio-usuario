@@ -41,4 +41,8 @@ public class AlumnoRestController {
         }
         return new ResponseEntity<>(alumno, HttpStatus.OK);
     }
+    @GetMapping("/filtrar/{term}")
+    public ResponseEntity<?> filtrar(@PathVariable String term){
+        return ResponseEntity.ok(serviceApi.findByNombreOrApellido(term));
+    }
 }

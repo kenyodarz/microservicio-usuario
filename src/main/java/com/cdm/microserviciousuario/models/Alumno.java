@@ -11,9 +11,9 @@ public class Alumno {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idAlumnos;
     @Column
-    private String Nombre;
+    private String nombre;
     @Column
-    private String Apellido;
+    private String apellido;
     @Column
     private String email;
     @Column
@@ -35,19 +35,19 @@ public class Alumno {
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public void setNombre(String nombre) {
-        Nombre = nombre;
+        nombre = nombre;
     }
 
     public String getApellido() {
-        return Apellido;
+        return apellido;
     }
 
     public void setApellido(String apellido) {
-        Apellido = apellido;
+        apellido = apellido;
     }
 
     public String getEmail() { return email; }
