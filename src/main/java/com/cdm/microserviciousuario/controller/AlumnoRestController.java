@@ -3,7 +3,10 @@ package com.cdm.microserviciousuario.controller;
 import com.cdm.microserviciousuario.models.Alumno;
 import com.cdm.microserviciousuario.services.AlumnoServiceApi;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,6 +19,18 @@ public class AlumnoRestController {
 
     @Autowired
     AlumnoServiceApi serviceApi;
+
+    @GetMapping("/uploads/img/{id}")
+    public ResponseEntity<?> verFoto(@PathVariable Long id){
+        Alumno alumno = serviceApi.get(id);
+
+        if (alumno == null || alumno.getFoto() == null) return ResponseEntity.notFound().build();
+
+        Resource imagen = new ByteArrayResource(alumno.getFoto());
+
+        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(imagen);
+    }
+
 
     @GetMapping
     public List<Alumno> getAll(){
